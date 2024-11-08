@@ -1,0 +1,58 @@
+<% layout("/layouts/boilerplate") %>   <!-- if boilerplate code is not aplye on other file then edit code write  layout("/layouts/boilerplate.ejs") < % =  % >  under this without space-->
+<body class="bg-light">
+    <div class="row">
+    <div class="col-8 offset-2">
+        <form method="POST" action="/listing/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
+            <h2 class="mb-1 text-center">Edit Listing</h2>
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" name="title" class="form-control" value="<%= listing.title %>" placeholder="Enter Listing Title" required>
+                <div class="valid-feedback">Title Looks good!</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" name="description" class="form-control" placeholder="Enter Description" rows="4" required><%= listing.description %></textarea>
+                <div class="invalid-feedback">please Enter Short Description !</div>
+            </div>
+
+            <!-- <div class="mb-3">
+                <label for="image" class="form-label">Image URL</label>
+                <input type="text" id="image" name="image" class="form-control" value="<%= listing.image%>" placeholder="Enter Image URL">
+            </div> -->
+            <div class="mb-3">
+                Oringinal Image <br>
+                <img src="<%= originalImage %>">
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload Image</label>
+                <input type="file" id="image" name="listing[image]" class="form-control">
+            </div>
+
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input  id="price" name="price" class="form-control" value="<%= listing.price %>" placeholder="Enter Price" required>   <!--  add type = "number"   -->
+                    <div class="invalid-feedback">Price Should be valid !</div>
+                </div>
+
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" id="country" name="country" class="form-control" value="<%= listing.country %>" placeholder="Enter Country" required>
+                    <div class="invalid-feedback">Country name Should be valid !</div>
+                </div>
+            </div>
+           
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" id="location" name="location" class="form-control" value="<%= listing.location %>" placeholder="Enter Location" required>
+                <div class="invalid-feedback">Location Should be valid !</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary ">Save Changes</button>
+        </form>
+    </div>
+</div>
+</body>
+<!-- <script src="/js/script.js"></script>      this file added in boilerplate code now it's aplye to all files  -->

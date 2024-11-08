@@ -1,0 +1,58 @@
+<!-- this for add new listing  -->
+ 
+
+<% layout("/layouts/boilerplate") %>
+<body class="bg-light">
+     <div class="container mt-5">  
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h2 class="mb-4 text-center">New Data</h2>
+                <form method="POST" action="/listing" class="needs-validation" novalidate enctype="multipart/form-data">  <!-- we use "novalidate" to remove "required" custom validation -->
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Enter Title" required>
+                        <div class="valid-feedback">Title Looks good!</div>
+                    </div>
+                                     <!-- // threr is an error i this file -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" name="description" class="form-control" placeholder="Enter Description" rows="4" required></textarea>
+                        <div class="invalid-feedback">please Enter Short Description !</div>
+                    </div>
+
+                    <!-- <div class="mb-3">
+                        <label for="image" class="form-label">Image URL</label>
+                        <input type="text" id="image" name="image" class="form-control" placeholder="Enter Image URL">
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Upload Image</label>
+                        <input type="file" id="image" name="listing[image]" class="form-control" required>
+                    </div>
+                    
+
+                    <div class="row">
+                        <div class="mb-3 col-md-4">
+                            <label for="price" class="form-label">Price</label>
+                           <input  id="price" name="price" class="form-control" placeholder="Enter Price" required>    <!--  add type = "number"   -->
+                            <div class="invalid-feedback">Price Should be valid !</div>
+                        </div>
+
+                        <div class="mb-3 col-md-8">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" id="country" name="country" class="form-control" placeholder="Enter Country" required>
+                            <div class="invalid-feedback">Contry name Should be valid !</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" id="location" name="location" class="form-control" placeholder="Enter Location" required>
+                        <div class="invalid-feedback">Location Should be valid !</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

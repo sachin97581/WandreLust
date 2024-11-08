@@ -1,0 +1,241 @@
+/* Navbar Styles */
+.navbar {
+    background-color: #f8f9fa; /* Light background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Navbar brand styles */
+.navbar-brand {
+    font-size: 1.5rem; /* Larger font size for brand */
+    color: #007bff; /* Primary color for the brand */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.navbar-brand:hover {
+    color: #0056b3; /* Darker shade on hover */
+}
+
+/* Navbar link styles */
+.navbar-nav .nav-link {
+    color: #333; /* Default link color */
+    padding: 10px 15px; /* Increased padding for better click area */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Navbar link hover effect */
+.navbar-nav .nav-link:hover {
+    color: #007bff; /* Change color on hover */
+    background-color: rgba(0, 123, 255, 0.1); /* Light background on hover */
+    border-radius: 5px; /* Rounded corners for hover background */
+}
+
+/* Active link styles */
+.navbar-nav .nav-link.active {
+    color: #fff; /* White color for active links */
+    background-color: #007bff; /* Primary background for active links */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Navbar toggler button styles */
+.navbar-toggler {
+    border-color: #007bff; /* Custom border color for toggler */
+}
+
+.navbar-toggler-icon {
+    background-color: #007bff; /* Custom color for the toggler icon */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
+
+.fa-compass{
+    font-size: 2rem;
+    color: #fe424f;
+} 
+
+
+
+
+
+/* Footer container */
+
+
+
+
+
+/* General Styles */
+html, body {
+    height: 100%; /* Full height for body */
+    margin: 0; /* Remove default margin */
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    min-height: 100vh; /* Full viewport height */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #2c2c2c; /* Dark background for footer */
+    padding: 20px 0;
+    text-align: center;
+    color: #ffffff;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+/* Footer info layout */
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Space between elements */
+}
+
+/* Social media icons */
+.footer-social i {
+    color: #ffffff; /* Icon color */
+    margin: 0 10px;
+    font-size: 24px; /* Icon size */
+    transition: color 0.3s ease;
+}
+
+.footer-social i:hover {
+    color: #ffcc00; /* Hover effect for social icons */
+}
+
+/* Copyright text */
+.footer-copy {
+    font-size: 14px;
+    font-weight: 300;
+    color: #dddddd;
+}
+
+/* Footer links */
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffcc00; /* Hover effect for links */
+}
+
+
+
+
+
+/* Card Container Styles */
+
+
+
+/* General Card Styles */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    /* margin-bottom: 20px; This will still apply margin for extra spacing on smaller screens */
+    margin: 10px 10px 20px;
+}
+
+
+ /* Card Image Styles */
+.card-img-top {
+    width: 100%; /* Ensures the image takes up 100% of the card's width */
+    height: 220px; /* Fixed height for the image */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+
+/* Card Body Styles */
+.card-body {
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Card Title Styles */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Card Text Styles */
+.card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+/* Price Styling */
+.card-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 10px;
+}
+
+/* Hover Effect */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 30px;
+    }
+}
+
+/* Grid Layout */
+.card-deck {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Adds space between the cards */
+    padding: 20px;
+}
+
+/* Link Styles */
+.listing-links {
+    text-decoration: none;
+    color: #333;
+}
+
+
+
+
+/* Edit Route */
+
+
+
+
+
