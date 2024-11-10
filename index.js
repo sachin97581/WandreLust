@@ -49,6 +49,7 @@ async function main() {
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
+    // mongoUrl: mongo_url,
     crypto:{
         secret: process.env.SECRET,
     },
