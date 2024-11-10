@@ -139,23 +139,22 @@ footer {
 /* Card Container Styles */
 
 
-
 /* General Card Styles */
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     border-radius: 15px;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: #f8f9fa;
-    /* margin-bottom: 20px; This will still apply margin for extra spacing on smaller screens */
-    margin: 10px 10px 20px;
+     /* margin-bottom: 20px; This will still apply margin for extra spacing on smaller screens */
+    margin: 10px 0 20px 0;
 }
 
 
  /* Card Image Styles */
 .card-img-top {
-    width: 100%; /* Ensures the image takes up 100% of the card's width */
-    height: 220px; /* Fixed height for the image */
+    width: 100%; 
+    height: 220px;
     object-fit: cover; /* Ensures the image covers the area without distortion */
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -216,6 +215,8 @@ footer {
     }
 }
 
+
+
 /* Grid Layout */
 .card-deck {
     display: grid;
@@ -229,8 +230,6 @@ footer {
     text-decoration: none;
     color: #333;
 }
-
-
 
 
 /* Edit Route */

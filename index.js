@@ -43,9 +43,10 @@ app.use(express.static(path.join(__dirname,"/public")));  // we ues static beaca
 
  const dbUrl = process.env.ATLASDB_URL;
 main().catch(err => console.log(err));
-async function main() {
-  mongoose.connect(dbUrl);      
+async function main() { 
+ mongoose.connect(dbUrl);      
 }
+
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,

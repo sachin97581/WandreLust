@@ -1,43 +1,5 @@
 <% layout("/layouts/boilerplate") %>
-    <style>
-        #filters {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .filter {
-            text-align: center;
-            margin-right: 2rem;
-            margin-top: 2rem;
-            opacity: 0.7;
-        }
-        .filter:hover {
-            opacity: 1;
-            cursor: pointer;
-        }
-        .filter p {
-            font-size: 0.8rem;
-        }
 
-        .tax_info{
-            display: none;
-        }
-        .tex_toggle{
-            /* display: block; */
-            cursor: pointer;
-            margin-top: 1rem;
-            border: 1px solid black;
-            /* height: 3.5rem; */
-            padding: 0.5rem;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            margin-left: 4rem;
-            /* display: none; */
-        }
-
-        
-    </style>
 <body>
     <!-- <h3>All Lists</h3> -->
     <div id="filters">
@@ -94,21 +56,27 @@
         
     </div>
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
-        <% for(let listing of allListing) { %>
-            <div class="card" style="width: 18rem;">
-                <a href="/listing/<%= listing._id %>" class="listing-links">
-                    <!-- Use listing.image as a string (not an object) -->
-                    <img src="<%= listing.image ? listing.image.url : '/path/to/default/image.jpg' %>" class="card-img-top" alt="listing_image">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= listing.title %></h5>
-                        <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN") %> / Night</p>
-                        <i class="tax_info"> &nbsp; +18% GST</i>
-                    </div>    
-                </a>
-            </div>
-        <% } %>
+    <div class="container mt-3">
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
+            <% for(let listing of allListing) { %>
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <a href="/listing/<%= listing._id %>" class="listing-links">
+                            <img src="<%= listing.image ? listing.image.url : '/path/to/default/image.jpg' %>" 
+                                 class="card-img-top" 
+                                 alt="listing_image">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= listing.title %></h5>
+                                <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN") %> / Night</p>
+                                <i class="tax_info"> &nbsp; +18% GST</i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            <% } %>
+        </div>
     </div>
+    
 </body>
 
 <script>
