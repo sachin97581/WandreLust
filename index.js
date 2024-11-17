@@ -34,24 +34,24 @@ app.use(express.static(path.join(__dirname,"/public")));  // we ues static beaca
 
 // This is for MongoDB for system strorage
 
-const mongo_url = "mongodb://127.0.0.1:27017/wanderlust";
- main().catch(err => console.log(err));
-async function main() {
-  mongoose.connect(mongo_url);      
-}
+// const mongo_url = "mongodb://127.0.0.1:27017/wanderlust";
+//  main().catch(err => console.log(err));
+// async function main() {
+//   mongoose.connect(mongo_url);      
+// }
 
 // This is for MongoDB Atlas 
 
-//  const dbUrl = process.env.ATLASDB_URL;
-// main().catch(err => console.log(err));
-// async function main() { 
-//  mongoose.connect(dbUrl);      
-// }
+ const dbUrl = process.env.ATLASDB_URL;
+main().catch(err => console.log(err));
+async function main() { 
+ mongoose.connect(dbUrl);      
+}
 
 
 const store = MongoStore.create({
-    // mongoUrl: dbUrl,
-    mongoUrl: mongo_url,
+    mongoUrl: dbUrl,
+    // mongoUrl: mongo_url,
     crypto:{
         secret: process.env.SECRET,
     },
