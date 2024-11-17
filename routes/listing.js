@@ -8,6 +8,7 @@ const ListingController = require("../controllers/listing.js");
 const multer  = require('multer');
 const {storage} = require('../cloudConfig.js');
 const upload = multer({ storage });
+// const categoryes = require('../categoryes');
 // const upload = multer({ dest: 'uploads/' });
 
 // we router.route where the routes are same 

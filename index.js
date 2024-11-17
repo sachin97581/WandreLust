@@ -16,6 +16,7 @@ const ExpressError = require("./utils/ExpressError.js");
 const listingRouter = require("./routes/listing.js");  // this a router
 const reviewRouter =require("./routes/review.js");     // this a router
 const userRouter = require("./routes/user.js");    // this a router
+const Listing = require("./models/listing.js");
 //const session =require("cookie-session");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
@@ -33,24 +34,24 @@ app.use(express.static(path.join(__dirname,"/public")));  // we ues static beaca
 
 // This is for MongoDB for system strorage
 
-// const mongo_url = "mongodb://127.0.0.1:27017/wanderlust";
-//  main().catch(err => console.log(err));
-// async function main() {
-//   mongoose.connect(mongo_url);      
-// }
+const mongo_url = "mongodb://127.0.0.1:27017/wanderlust";
+ main().catch(err => console.log(err));
+async function main() {
+  mongoose.connect(mongo_url);      
+}
 
 // This is for MongoDB Atlas 
 
- const dbUrl = process.env.ATLASDB_URL;
-main().catch(err => console.log(err));
-async function main() { 
- mongoose.connect(dbUrl);      
-}
+//  const dbUrl = process.env.ATLASDB_URL;
+// main().catch(err => console.log(err));
+// async function main() { 
+//  mongoose.connect(dbUrl);      
+// }
 
 
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
-    // mongoUrl: mongo_url,
+    // mongoUrl: dbUrl,
+    mongoUrl: mongo_url,
     crypto:{
         secret: process.env.SECRET,
     },
@@ -95,21 +96,121 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.get("/demo", async (req, res) => {
-//     let fakeuser = new User({
-//         email: "user123@gmail.com",
-//         username: "Ten Ten",
-//     });
-//     let registerUser = await User.register(fakeuser, "hellow");
-//     res.send(registerUser);
-//     //console.log(registerUser);
-// });
 
 
+// For Rooms 
 
-// app.get("/", (req , res) => {
-//     res.send("app is runing");
-// });
+app.get("/rooms", async (req, res) => {
+    try {
+        const allListing = await Listing.find({ category: "ROOM" }); // Only fetch rooms
+        res.render("category/rooms", { allListing }); // Assuming "rooms" is the EJS template
+    } catch (error) {
+        console.error("Error fetching listings:", error);
+        res.status(500).send("Error fetching listings");
+    }
+});
+
+app.get("/trending", async(req ,res) => {
+    try{
+        const allListing  = await Listing.find({category:"TRENDING"});
+        res.render("category/trending", {allListing});
+    }catch(error){
+        console.error("Error fetching listings:", error);
+        res.status(500).send("Error fetching listings");
+    }
+});
+
+
+// there is an error
+app.get("/iconic_cities", async(req ,res) => {
+    try{
+        const allListing = await Listing.find({category:"ICONIC CITIES"});
+        res.render("category/iconic_cities", {allListing});
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Error fetching iconic cities");
+    }
+});
+
+app.get("/mountains", async(req ,res) => {
+    try{
+        const allListing = await Listing.find({category:"MOUNTAINS"});
+        res.render("category/mountain", {allListing});
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Error fetching mountains");
+    }
+});
+
+app.get("/castels", async(req ,res) => {
+    try{
+        const allListing = await Listing.find({category:"CASTLES"});
+        res.render("category/castles", {allListing});
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Error fetching castles");
+    }
+});
+
+app.get("/amazing_pools", async(req ,res) => {
+    try{
+        const allListing = await Listing.find({category:"AMAZING POOLS"});
+        res.render("category/amazing_pools", {allListing});
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Error fetching amazing places");
+    }
+});
+
+app.get("/camping", async(req ,res) => {
+    try{
+        const allListing = await Listing.find({category:"CAMPING"});
+        res.render("category/camping", {allListing});
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Error fetching campings");
+    }
+});
+
+app.get("/farms", async(req ,res) => {
+    try{
+        const allListing = await Listing.find({category:"FARMS"});
+        res.render("category/farms", {allListing});
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Error fetching farms");
+    }
+});
+
+app.get("/arctic", async(req ,res) => {
+    try{
+        const allListing = await Listing.find({category:"ARCTIC"});
+        res.render("category/arctic", {allListing});
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Error fetching arctic");
+    }
+});
+
+app.get("/domes", async(req, res)  =>{
+    try{
+        const allListing = await Listing.find({category:"DOMES"});
+        res.render("category/domes", {allListing});
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Error fetching Domes");
+    }
+});
+
+app.get("/boats" , async(req , res) =>{
+    try{
+        const allListing = await Listing.find({category:"BOATS"});
+        res.render("category/boats", {allListing});
+    }catch(error){
+        console.log(error);
+        res.status(500).send("Error fetching boats");
+    }
+});
 
 app.use("/listing", listingRouter);
 app.use("/listing/:id/reviews", reviewRouter);
@@ -129,5 +230,5 @@ app.use((err, req, res, next) =>{
 
 
 app.listen(port, () => {
-    console.log("app is listioning");
+    console.log("app is listening");
 });

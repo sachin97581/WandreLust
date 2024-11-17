@@ -1,3 +1,35 @@
+// commands = npm list --depth=0    // to know how many libraries use in our project 
+
+/* 
+  ** agter add a new Category i have to update the schema.js file , ./moderels/listing.js , .views/listing/new.ejs file , 
+  ** To save the category in upper case i have to add a pre-save middleware in ./moderels/listing.js file
+
+  <div class="container mt-3">
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
+            <% for(let listing of allListing) { %>
+                <% if (listing.category === "ROOM") { %> <!-- Check if category is "ROOM" -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <a href="/listing/<%= listing._id %>" class="listing-links">
+                                <img src="<%= listing.image ? listing.image.url : '/path/to/default/image.jpg' %>" 
+                                     class="card-img-top" 
+                                     alt="listing_image">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= listing.title %></h5>
+                                    <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN") %> / Night</p>
+                                    <!-- <i class="tax_info"> &nbsp; +18% GST</i> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <% } %> <!-- End of category check  else-if(listing.category === "APARTMENT") {-->
+            <% } %>
+        </div>
+    </div>
+*/
+
+
+
 //   1 .  we use to type of validations  
 //     a. client (form) side validation  => client side validatiion use for client by the help of bootstrep
 //     b. server side validation         => we handle server side validation with the help of JOI (npm package)

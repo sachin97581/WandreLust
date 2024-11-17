@@ -1,0 +1,25 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="container mt-3">
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
+            <% for(let listing of allListing) { %>
+                <% if (listing.category === "AMAZING POOLS") { %> <!-- Check if category is "ROOM" -->
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <a href="/listing/<%= listing._id %>" class="listing-links">
+                                <img src="<%= listing.image ? listing.image.url : '/path/to/default/image.jpg' %>" 
+                                     class="card-img-top" 
+                                     alt="listing_image">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= listing.title %></h5>
+                                    <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN") %> / Night</p>
+                                    <!-- <i class="tax_info"> &nbsp; +18% GST</i> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <% }%>
+            <% } %>
+        </div>
+    </div>
+</body>

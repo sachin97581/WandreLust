@@ -3,61 +3,62 @@
 <body>
     <!-- <h3>All Lists</h3> -->
     <div id="filters">
-        <div class="filter">
+        <div class="filter"   onclick="window.location.href='/trending'" style="cursor: pointer;">
             <div><i class="fa-solid fa-fire"></i></div>
             <p>Trending</p>
         </div>
-        <div class="filter">
-            <div><i class="fa-solid fa-bed"></i></div> <!-- Added missing "<" -->
-            <p>Rooms</p>
-        </div>
-        <div class="filter">
+        <form method="GET" class="filter rooms" onclick="window.location.href='/rooms'" style="cursor: pointer;">  <!-- onclick="window.location.href='/listing/new'"   -->
+                <div><i class="fa-solid fa-bed"></i></div> <!-- Added missing "<" -->
+                <p>Rooms</p>
+        </form>
+        <!-- there is an error -->
+        <div class="filter" onclick="window.location.href='/iconic_cities'" style="cursor: pointer;">
             <div><i class="fa-solid fa-mountain-city"></i></div>
             <p>Iconic Cities</p>
         </div>
-        <div class="filter">
+        <div class="filter" onclick="window.location.href='/mountains'" style="cursor: pointer;">
             <div><i class="fa-solid fa-mountain"></i></div> <!-- Added missing "<" -->
-            <p>Moutains</p>
+            <p>Mountains</p>
         </div>
-        <div class="filter">
+        <div class="filter" onclick="window.location.href='/castels'" style="cursor: pointer;">
             <div><i class="fa-brands fa-fort-awesome"></i></div>
             <p>Castles</p>
         </div>
-        <div class="filter">
+        <div class="filter" onclick="window.location.href='/amazing_pools'" style="cursor: pointer;">
             <div><i class="fa-solid fa-person-swimming"></i></div> <!-- Added missing "<" -->
             <p>Amazing pools</p>
         </div>
-        <div class="filter">
+        <div class="filter" onclick="window.location.href='/camping'" style="cursor: pointer;">
             <div><i class="fa-solid fa-campground"></i></div> <!-- Added missing "<" -->
             <p>Camping</p>
         </div>
-        <div class="filter">
+        <div class="filter" onclick="window.location.href='/farms'" style="cursor: pointer;">
             <div><i class="fa-solid fa-cow"></i></div>
             <p>Farms</p>
         </div>
-        <div class="filter">
+        <div class="filter" onclick="window.location.href='/arctic'" style="cursor: pointer;">
             <div><i class="fa-regular fa-snowflake"></i></div> <!-- Added missing "<" -->
             <p>Arctic</p>
         </div>
-        <div class="filter">
+        <div class="filter" onclick="window.location.href='/domes'" style="cursor: pointer;">
             <div><i class="fa-solid fa-igloo"></i></div>
             <p>Domes</p>
         </div>
-        <div class="filter">
+        <div class="filter" onclick="window.location.href='/boats'" style="cursor: pointer;">
             <div><i class="fa-solid fa-ship"></i></div> <!-- Added missing "<" -->
             <p>Boats</p>
         </div>
         <div class="tex_toggle">
-            <div class="form-check-reverse form-switch">
+            <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
-              </div>
+            </div>
         </div>
         
     </div>
 
     <div class="container mt-3">
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
             <% for(let listing of allListing) { %>
                 <div class="col">
                     <div class="card h-100 shadow-sm">
@@ -65,11 +66,11 @@
                             <img src="<%= listing.image ? listing.image.url : '/path/to/default/image.jpg' %>" 
                                  class="card-img-top" 
                                  alt="listing_image">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= listing.title %></h5>
-                                <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN") %> / Night</p>
-                                <i class="tax_info"> &nbsp; +18% GST</i>
-                            </div>
+                                 <div class="card-body">
+                                    <h5 class="card-title"><%= listing.title %></h5>
+                                    <p class="card-text">&#8377;<%= listing.price.toLocaleString("en-IN") %> / Night</p>
+                                    <i class="tax_info" style="display: none;"> &nbsp; +18% GST</i>
+                                </div>
                         </a>
                     </div>
                 </div>
@@ -77,18 +78,25 @@
         </div>
     </div>
     
+    
+    
 </body>
 
 <script>
-    let TaxSwotch = document.getElementById('flexSwitchCheckDefault');
-    TaxSwotch.addEventListener('click',() => {
-        let texInfo = document.getElementsByClassName('tax_info');
-        for(info of texInfo){
-            if(info.style.display != 'inline'){
-                info.style.display = 'inline';
-            }else{
-                info.style.display = 'none';
-            }
+    // Get the toggle switch element
+    let taxSwitch = document.getElementById('flexSwitchCheckDefault');
+
+    // Add event listener to toggle the display of tax info
+    taxSwitch.addEventListener('click', () => {
+        let taxInfoElements = document.getElementsByClassName('tax_info');
+        
+        // Loop through all elements with the class 'tax_info'
+        for (let info of taxInfoElements) {
+            // Toggle display property
+            info.style.display = (info.style.display === 'none' || info.style.display === '') 
+                ? 'inline' 
+                : 'none';
         }
-    })
+    });
 </script>
+

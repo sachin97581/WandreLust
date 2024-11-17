@@ -31,10 +31,11 @@ module.exports.showNewListing =async (req , res) => {
 
 // Add new List
 module.exports.createListing = async (req, res, next) => {
+   try {
     let url = req.file.path;
     let filename = req.file.filename;
      // console.log(url, ".." , filename);
-   const { title, description, image, price, location, country } = req.body; // Destructure incoming data
+   const { title, description, image, price, location  , category, country } = req.body; // Destructure incoming data
     // Create a new listing using the validated data
     const newListing = new Listing({
         title,
@@ -42,6 +43,7 @@ module.exports.createListing = async (req, res, next) => {
         image: image || "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",  // Default image if none provided
         price,
         location,
+        category,
         country
     });
 
@@ -52,6 +54,10 @@ module.exports.createListing = async (req, res, next) => {
     // console.log(result);
     req.flash("success", "New Listing Created !");
     res.redirect('/listing');
+   } catch (error) {
+    console.log(error);
+    
+   }
    // console.log(result);         // Log the saved listing
 }
 
@@ -92,6 +98,7 @@ module.exports.updateListing = async (req, res) => {
     listing.price = req.body.price;
     listing.location = req.body.location;
     listing.country = req.body.country;
+    listing.category = req.body.category;
 
     // If the image file is uploaded, update the image
     if (req.file) {

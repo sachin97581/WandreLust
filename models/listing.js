@@ -13,6 +13,7 @@ const listingSchema = new Schema({
     filename: String,
   },
   price: Number,
+  category: String,  // new field
   location: String,
   country: String,
   reviews : [{
@@ -23,6 +24,14 @@ const listingSchema = new Schema({
     type : Schema.Types.ObjectId,
     ref : "User"
   },
+});
+
+// Pre-save middleware to convert category to uppercase
+listingSchema.pre('save', function (next) {
+  if (this.category) {
+    this.category = this.category.toUpperCase();
+  }
+  next();
 });
 
 // when we delete a listing and we want also delete the data of all review with listing we use 
