@@ -1,0 +1,175 @@
+/* Book Now Section */
+#booknow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: linear-gradient(to bottom, #e0eafc, #cfdef3);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+.infodiv {
+    width: 44rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    margin: 10px;
+}
+
+#listingImage {
+    max-width: 36rem; /* Ensure responsiveness */
+    height: 28rem;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-left: 3rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.totalBill {
+    width: 22rem;
+    height: 32rem;
+    margin-left: 5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.totalBill:hover {
+    transform: scale(1.05);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+}
+
+.actualPrice {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+
+#listingImage:hover {
+    transform: scale(1.05);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+}
+
+.container p {
+    font-size: 18px;
+    color: #34495e;
+    margin: 10px 0;
+}
+
+.container p span {
+    font-weight: bold;
+    color: #2980b9;
+}
+
+
+.totalBill h3 {
+    font-size: 24px;
+    color: #27ae60;
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+
+.actualPrice {
+    font-size: 20px;
+    color: #7f8c8d;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #listingImage {
+        width: 100%;
+        height: auto;
+    }
+
+    .container{
+        height: 33rem;
+        width: 100%;
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .totalBill {
+        height: auto;
+        width: 100%;
+        padding: 10px;
+
+    }
+
+    #title {
+        font-size: 24px;
+    }
+
+    .actualPrice {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .totalBill {
+        width: 100%; 
+        height: auto; 
+        margin: 0 auto;
+    }
+}
+
+ 
+/* General Button Styles */
+.booknowbtn {
+    margin:  5rem  0 0 0;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #41eb4f; /* Bootstrap Primary Blue */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+/* Hover Effects */
+.booknowbtn:hover {
+    background-color: #0056b3; /* Darker Blue */
+    box-shadow: 0 8px 15px rgba(0, 91, 187, 0.4);
+    transform: translateY(-2px); /* Lift the button slightly */
+}
+
+/* Active (Pressed) State */
+.booknowbtn:active {
+    background-color: #003d80;
+    box-shadow: 0 4px 10px rgba(0, 59, 128, 0.3);
+    transform: translateY(1px); /* Press the button down */
+}
+
+/* Button with Emoji */
+.booknowbtn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Add spacing between text and emoji */
+}
+
+/* Adding Focus Style */
+.booknowbtn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Focus ring */
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .booknowbtn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+

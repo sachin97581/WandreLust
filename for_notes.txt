@@ -1,3 +1,9 @@
+// to i am work at serch btn 
+// i make change in boilerplate and create a new file search.js and make change in navebar and main index.js file and 
+// create new serchdata.ejs file 
+
+
+
 // commands = npm list --depth=0    // to know how many libraries use in our project 
 
 /* 

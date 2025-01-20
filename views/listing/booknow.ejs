@@ -1,0 +1,25 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <!-- <h1>Hotel Booked!</h1> -->
+    <div id="booknow" class="bg-light">
+        <div class="infodiv mb-3 mt-4 fw-bold">
+            <h2 id="title"><%= listing.title %></h2>
+            <img id="listingImage" src="<%= originalImage %>" alt="<%= listing.title %>">
+            <p>Category: <%= listing.category %></p>
+            <p>Location: <%= listing.location %></p>
+            <p>Country: <%= listing.country %></p>
+            <p>₹<%= listing.price %> / Night</p>
+        </div>
+    
+        <div class="totalBill mb-3 text-center fw-bold">
+            <h3 class="mb-3 text-center fw-bold">Total Bill</h3>
+            <div>
+                <p class="actualPrice ">Actual Price : <%= listing.price %> + GST : 18%</p>
+                <p class="actualPrice">Total Bill : <%= listing.price + listing.price * 0.18 %> / Night</p>
+                <form method="GET" action="/listing/<%= listing._id %>" class="d-inline">
+                    <button type="submit" class="btn btn-primary booknowbtn">Pay 💸💸</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

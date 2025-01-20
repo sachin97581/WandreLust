@@ -42,11 +42,35 @@
                             <input type="text" id="country" name="country" class="form-control" placeholder="Enter Country" required>
                             <div class="invalid-feedback">Contry name Should be valid !</div>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <input type="text" id="category" name="category" class="form-control" placeholder="Enter category" required>
                             <div class="invalid-feedback">Category Should be valid !</div>
-                        </div>
+                        </div> -->
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <div class="input-group">
+                              <button type="button" class="btn btn-outline-secondary">Category</button>
+                              <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                              </button>
+                              <ul class="dropdown-menu" id="categoryDropdown">
+                                <li><a class="dropdown-item" href="#">Trending</a></li>
+                                <li><a class="dropdown-item" href="#">Room</a></li>
+                                <li><a class="dropdown-item" href="#">Iconic cities</a></li>
+                                <li><a class="dropdown-item" href="#">Mountains</a></li>
+                                <li><a class="dropdown-item" href="#">Castles</a></li>
+                                <li><a class="dropdown-item" href="#">Amazing pools</a></li>
+                                <li><a class="dropdown-item" href="#">Camping</a></li>
+                                <li><a class="dropdown-item" href="#">Farms</a></li>
+                                <li><a class="dropdown-item" href="#">Arctic</a></li>
+                                <li><a class="dropdown-item" href="#">Domes</a></li>
+                                <li><a class="dropdown-item" href="#">Boats</a></li>
+                              </ul>
+                              <input type="text" id="category" name="category" class="form-control" placeholder="Enter category" required>
+                              <div class="invalid-feedback">Category should be valid!</div>
+                            </div>
+                          </div>
                     </div>
 
                     <div class="mb-3">
@@ -60,4 +84,33 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Get references to the dropdown and input field
+        const dropdown = document.getElementById('categoryDropdown');
+        const input = document.getElementById('category');
+      
+        // Add an event listener to the dropdown
+        dropdown.addEventListener('click', function (event) {
+          if (event.target.classList.contains('dropdown-item')) {
+            // Set the input value to the clicked item's text
+            input.value = event.target.textContent;
+      
+            // Mark the input as valid
+            input.setCustomValidity(''); // Clear custom error
+            input.classList.remove('is-invalid');
+          }
+        });
+      
+        // Add an input event listener to handle manual typing and validation
+        input.addEventListener('input', function () {
+          if (input.value.trim() === '') {
+            input.setCustomValidity('Category is required');
+            input.classList.add('is-invalid');
+          } else {
+            input.setCustomValidity(''); // Clear custom error
+            input.classList.remove('is-invalid');
+          }
+        });
+      </script>
 </body>

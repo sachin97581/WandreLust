@@ -212,6 +212,37 @@ app.get("/boats" , async(req , res) =>{
     }
 });
 
+// book now
+app.get("/listing/:id/booknow", async (req, res) => {
+    const { id } = req.params;
+    try {
+        // Fetch listing by ID
+        const listing = await Listing.findById(id);
+
+        if (!listing) {
+            req.flash("error", "Your listing was not found!");
+            return res.redirect("/listing"); // Ensure no further code runs
+        }
+        // Transform image URL for resizing (if available)
+        let originalImage = listing.image?.url || ""; // Safe access
+        if (originalImage) {
+            originalImage = originalImage.replace("/upload", "/upload/w_450,h_250");
+        }
+        // Set success flash message
+        req.flash("success", "Ready to book your listing!");
+
+        // Render the booking page
+        res.render("listing/booknow.ejs", { listing, originalImage });
+
+    } catch (error) {
+        console.error(error); // Log error for debugging
+        req.flash("error", "Something went wrong. Please try again.");
+        res.redirect("/listing");
+    }
+});
+
+
+
 app.use("/listing", listingRouter);
 app.use("/listing/:id/reviews", reviewRouter);
 app.use("/", userRouter);
