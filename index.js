@@ -24,6 +24,11 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user.js");
+// open ai
+const { generateMongoQuery } = require("./utils/aiQueryBuilder");
+const { getAIResponse } = require("./utils/aiQueryBuilder"); // Import the function from openai.js
+
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -31,6 +36,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));  // we ues static beacause we can serve code of css , JavaScript from Public folder
+
 
 // This is for MongoDB for system strorage
 
@@ -88,6 +94,97 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+
+
+// open ai
+
+// app.get("/ai-search", async (req, res) => {
+//     const userInput = req.query.query;
+//     if (!userInput) return res.status(400).send("Query required");
+  
+//     try {
+//       const mongoQuery = await generateMongoQuery(userInput);
+//       console.log("MongoDB Query: from index.js file", mongoQuery); // Log the generated query for debugging
+//       const results = await Listing.find(mongoQuery);
+//       console.log("Results: from index.js file", results); // Log the results for debugging
+//       // Optional: Ask AI to suggest more related results (titles, locations, etc.)
+//       const relatedPrompt = `
+//   User searched: "${userInput}". These results were found: ${results.map(r => r.title).join(", ")}.
+//   Can you suggest other listings or ideas related to this search?
+//   `;
+  
+//       const relatedResponse = await cohere.chat({
+//         model: "command-r-plus",
+//         message: relatedPrompt,
+//       });
+  
+//       const suggestion = relatedResponse.text;
+//       console.log("AI Suggestion: from index.js file", suggestion); // Log the AI suggestion for debugging
+//     res.send(`
+//         <style>
+//           body { font-family: Arial, sans-serif; margin: 2rem; }
+//           h2, h3 { color: #2c3e50; }
+//           ul { list-style: none; padding: 0; }
+//           li { background: #f9f9f9; margin-bottom: 0.5rem; padding: 0.7rem; border-radius: 8px; }
+//           p { background: #e8f0fe; padding: 1rem; border-radius: 10px; }
+//           .back-btn { margin-top: 1rem; display: inline-block; text-decoration: none; background: #3498db; color: white; padding: 0.5rem 1rem; border-radius: 5px; }
+//         </style>
+//         <h2>🔍 AI Search Results for: <em>${userInput}</em></h2>
+//         <ul>
+//           ${results.length > 0 ? results.map(r => `<li><strong>${r.title}</strong> | ${r.location}, ${r.country} - ₹${r.price}</li>`).join("") : "<li>No matching results found.</li>"}
+//         </ul>
+//         <h3>💡 AI Suggestions:</h3>
+//         <p>${suggestion}</p>
+//         <a href="/" class="back-btn">🔙 Back to Search</a>
+//       `);
+//     } catch (err) {
+//       console.error("Error during AI search: from index.js file", err.message);
+//       res.status(500).send("Something went wrong with AI search.");
+//     }
+//   });
+
+
+
+// this is for AI search which is wroking 
+  
+  app.get("/ai-search", async (req, res) => {
+    const userInput = req.query.query;
+    if (!userInput) return res.status(400).send("Query required");
+  
+    try {
+      const aiResponse = await getAIResponse(userInput);
+        // console.log("AI Response: from index.js file", aiResponse); // Log the AI response for debugging
+    //   res.send(`<h2>AI Response:</h2><p>${aiResponse}</p>`);
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>AI Response</title>
+          <link rel="stylesheet" href="/css/aiResponse.css" />  
+        </head>
+        <body>
+          <div class="response-container">
+            <h2>👋 Welcome to Wanderlust AI</h2>
+            <p class="intro">Let’s explore the best stays for your next adventure!</p>
+            <hr />
+            <h3>🤖 Here's what AI has to say:</h3>
+            <div class="response-box">${aiResponse}</div>
+            <a href="/listing" class="back-btn">🔙 Back to Home</a>
+          </div>
+        </body>
+        </html>
+      `);
+      
+    } catch (err) {
+    //   console.error("Error during AI search: from index.js file", err.message);
+      res.status(500).send("Something went wrong with AI search. from index.js file");
+    }
+  });
+  
+
+
 // flash the pop up 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -105,7 +202,7 @@ app.get("/rooms", async (req, res) => {
         const allListing = await Listing.find({ category: "ROOM" }); // Only fetch rooms
         res.render("category/rooms", { allListing }); // Assuming "rooms" is the EJS template
     } catch (error) {
-        console.error("Error fetching listings:", error);
+        // console.error("Error fetching listings:", error);
         res.status(500).send("Error fetching listings");
     }
 });

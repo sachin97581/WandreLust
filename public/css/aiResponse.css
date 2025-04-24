@@ -1,0 +1,58 @@
+/* response.css */
+
+.response-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f8fb;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  
+  .response-container h2 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .response-container p.intro {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .response-container hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 1.5rem 0;
+  }
+  
+  .response-container h3 {
+    color: #1f78b4;
+  }
+  
+  .response-box {
+    background: #ffffff;
+    border-left: 4px solid #1f78b4;
+    padding: 1rem 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 1.05rem;
+    color: #333;
+    border-radius: 8px;
+  }
+  
+  .back-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    text-decoration: none;
+    background-color: #1f78b4;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: #155a8a;
+  }
+  

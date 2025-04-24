@@ -34,10 +34,30 @@
           <a class="nav-link" href="/listing">Explore</a>
         </div>
         <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search">
+          <!-- <form class="d-flex" role="search">
             <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" aria-label="Search">
             <button class="btn search-btn" type="submit" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form> -->
+          <!-- <form action="/ai-search" method="GET">
+            <input type="text" name="query" placeholder="Ask anything...">
+            <button type="submit">🔍 AI Search</button>
+          </form> -->
+          <form action="/ai-search" method="GET" style="display: flex; gap: 10px; align-items: center; margin: 2rem 0;">
+            <input
+              type="text"
+              name="query"
+              placeholder="Search listings with AI... (e.g., villas under 2000 in Goa)"
+              style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem;"
+              required
+            />
+            <button
+              type="submit"
+              style="padding: 10px 16px; background-color: #2ecc71; border: none; color: white; font-weight: bold; border-radius: 8px; cursor: pointer;">
+              🔍 AI Search
+            </button>
           </form>
+          
+          
         </div>
         
         <div class="navbar-nav ms-auto">
